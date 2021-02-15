@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: MongoDb with locations
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: LocationsDB
+      uri: mongodb://localhost:27017/LocationsDB
+server:
+  port: 8081
