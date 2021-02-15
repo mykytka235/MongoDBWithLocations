@@ -1,4 +1,4 @@
-package com.skankhunt220.repository.city;
+package com.lootfood.repository.city;
 
 import com.mongodb.client.model.geojson.Point;
 import org.bson.Document;

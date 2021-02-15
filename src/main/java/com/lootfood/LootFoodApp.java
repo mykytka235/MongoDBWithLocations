@@ -1,11 +1,11 @@
-package com.skankhunt220;
+package com.lootfood;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootApp {
+public class LootFoodApp {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootApp.class, args);
+		SpringApplication.run(LootFoodApp.class, args);
 	}
 }

@@ -1,4 +1,4 @@
-package com.skankhunt220.repository.city;
+package com.lootfood.repository.city;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-class GeolocationRepositoryTest {
+class MongoDbGeoOperationsTest {
     @Autowired
     private MongoTemplate mongoTemplate;
 
@@ -34,10 +34,9 @@ class GeolocationRepositoryTest {
 
     @Test
     public void findInSphere() {
-        MongoCollection<Document> collection = mongoTemplate.getCollection("cities");
         double distanceInRad = 125.0 / 6371;
 
-        FindIterable<Document> result = collection.find(
+        FindIterable<Document> result = mongoTemplate.getCollection("cities").find(
                 Filters.geoWithinCenterSphere("location", 30.83312, 50.3156, distanceInRad)
         );
         assertNotNull(result.first());

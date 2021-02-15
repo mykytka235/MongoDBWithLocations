@@ -1,10 +1,12 @@
-package com.skankhunt220.service;
+package com.lootfood.service;
 
 import com.mongodb.client.model.geojson.Point;
-import com.skankhunt220.entity.City;
-import com.skankhunt220.repository.city.CityRepository;
+import com.lootfood.entity.City;
+import com.lootfood.repository.city.CityRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.Document;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +16,8 @@ import java.util.List;
 public class CityService {
 	private final CityRepository cityRepository;
 
-	public City addCity(City city) {
+	public City add(City city) {
 		return cityRepository.save(city);
-	}
-
-	public List<City> addCities(List<City> cities) {
-		return cityRepository.saveAll(cities);
 	}
 
 	public City getById(String id) {
@@ -34,11 +32,11 @@ public class CityService {
 		return cityRepository.findCityByGeoIntersects(point);
 	}
 
-	public List<City> getAllCities() {
-		return cityRepository.findAll();
+	public Page<City> getAll(Pageable pageable) {
+		return cityRepository.findAll(pageable);
 	}
 
-	public City updateCity(City city) {
+	public City update(City city) {
 		return  cityRepository.save(city);
 	}
 
