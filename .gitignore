@@ -1,10 +1,12 @@
 
 /bin/
+/lib/
 /build/
 /gradle/
 /.gradle/
 /.settings/
 /.idea/
+/src/test/
 
 .classpath
 .gitattributes

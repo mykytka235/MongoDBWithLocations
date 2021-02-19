@@ -1,22 +1,21 @@
-package com.lootfood.entity;
+package com.lootfood.api.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "city")
-public class City {
-    @Id
+public class ServiceDto {
     private String id;
     private String name;
-    private GeoJsonPolygon location;
+    private Date createdDate;
+    private Date updateDate;
 }

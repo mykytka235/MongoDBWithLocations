@@ -1,12 +1,11 @@
 spring:
   application:
-    name: MongoDb with locations
+    name: Lootfood
   data:
     mongodb:
       host: localhost
       port: 27017
-      database: LocationsDB
-      collection: city
-      uri: mongodb://localhost:27017/LocationsDB
+      database: lootfood-db
+      uri: mongodb://localhost:27017/lootfood-db
 server:
   port: 8081
