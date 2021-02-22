@@ -1,4 +1,4 @@
-package com.lootfood.api.Dto;
+package com.lootfood.api.dto;
 
 import com.lootfood.entity.Service;
 import com.lootfood.entity.User;
@@ -16,9 +16,9 @@ import java.util.Date;
 public class OrderDto {
     private String id;
     private String name;
+    private String description;
     private User user;
     private Service service;
-    private String description;
     private Date createdDate;
     private Date updateDate;
 }

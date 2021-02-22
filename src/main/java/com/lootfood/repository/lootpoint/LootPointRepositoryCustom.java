@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface LootPointRepositoryCustom {
     Page<LootPoint> findAllLootPointsInPolygon(List<List<Double>> points, Pageable pageable);
-    LootPoint update(LootPoint lootPoint);
 }

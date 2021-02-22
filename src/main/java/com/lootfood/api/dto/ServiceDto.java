@@ -1,17 +1,19 @@
-package com.lootfood.api.Dto;
+package com.lootfood.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
+
+import java.util.Date;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CityDto {
+public class ServiceDto {
     private String id;
     private String name;
-    private GeoJsonPolygon location;
+    private Date createdDate;
+    private Date updateDate;
 }

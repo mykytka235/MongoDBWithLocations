@@ -20,9 +20,9 @@ public class Order {
     @Id
     private String id;
     private String name;
+    private String description;
     private User user;
     private Service service;
-    private String description;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

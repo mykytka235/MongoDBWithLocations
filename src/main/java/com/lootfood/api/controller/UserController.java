@@ -1,6 +1,6 @@
 package com.lootfood.api.controller;
 
-import com.lootfood.api.Dto.UserDto;
+import com.lootfood.api.dto.UserDto;
 import com.lootfood.entity.User;
 import com.lootfood.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +15,19 @@ import java.util.stream.Collectors;
 import static com.lootfood.api.transformer.UserTransformer.transform;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/lootfood/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public UserDto add(@RequestBody UserDto dto) {
+    public UserDto create(@RequestBody UserDto dto) {
         return transform(userService.add(transform(dto)));
+    }
+
+    @PutMapping("/{id}")
+    public UserDto update(@PathVariable("id") String id, @RequestBody UserDto dto) {
+        return transform(id, userService.update(transform(id, dto)));
     }
 
     @GetMapping("/{id}")
@@ -32,20 +37,6 @@ public class UserController {
 
     @GetMapping(value = "/all", params = { "page", "size" })
     public Page<UserDto> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<User> users = userService.getAll(pageable);
-
-        return new PageImpl<UserDto>(users.stream().map(user -> transform(user)).collect(Collectors.toList()), pageable,
-                users.getTotalElements());
-    }
-
-    @PutMapping("/{id}")
-    public UserDto update(@PathVariable("id") String id, @RequestBody UserDto dto) {
-        return transform(id, userService.update(transform(id, dto)));
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") String id) {
-        userService.delete(id);
+        return userService.getAll(PageRequest.of(page, size)).map(user -> transform(user));
     }
 }

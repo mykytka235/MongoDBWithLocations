@@ -1,5 +1,5 @@
 package com.lootfood.entity;
 
-public enum TypeOfLootPoint {
+public enum LootPointType {
     PUBLIC, PRIVATE
 }

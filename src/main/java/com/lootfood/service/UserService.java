@@ -25,7 +25,12 @@ public class UserService {
     }
 
     public User update(User user) {
-        return userRepository.update(user);
+        User userFromDb = userRepository.findById(user.getId()).get();
+        userFromDb.setFirstName(user.getFirstName());
+        userFromDb.setLastName(user.getLastName());
+        userFromDb.setPhone(user.getPhone());
+
+        return userRepository.save(userFromDb);
     }
 
     public void delete(String id) {

@@ -24,7 +24,10 @@ public class ServiceOfService {
     }
 
     public Service update(Service service) {
-        return serviceRepository.update(service);
+        Service serviceFromDb = serviceRepository.findById(service.getId()).get();
+        serviceFromDb.setName(service.getName());
+
+        return serviceRepository.save(serviceFromDb);
     }
 
     public void delete(String id) {

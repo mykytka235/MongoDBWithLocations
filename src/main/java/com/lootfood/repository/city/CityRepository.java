@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CityRepository extends MongoRepository<City, String>, CityRepositoryCustom {
-    City findFirstByName(String name);
     Page<City> findAll(Pageable pageable);
 }

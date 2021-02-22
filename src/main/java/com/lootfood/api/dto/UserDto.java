@@ -1,4 +1,4 @@
-package com.lootfood.api.Dto;
+package com.lootfood.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

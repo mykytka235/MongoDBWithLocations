@@ -31,7 +31,14 @@ public class LootPointService {
     }
 
     public LootPoint update(LootPoint lootPoint) {
-        return lootpointRepository.update(lootPoint);
+        LootPoint lootPointFromDb = lootpointRepository.findById(lootPoint.getId()).get();
+        lootPointFromDb.setName(lootPoint.getName());
+        lootPointFromDb.setDescription(lootPoint.getDescription());
+        lootPointFromDb.setType(lootPoint.getType());
+        lootPointFromDb.setOrders(lootPoint.getOrders());
+        lootPointFromDb.setLocation(lootPoint.getLocation());
+
+        return lootpointRepository.save(lootPointFromDb);
     }
 
     public void delete(String id) {

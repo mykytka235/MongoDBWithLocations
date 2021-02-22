@@ -1,6 +1,6 @@
 package com.lootfood.api.controller;
 
-import com.lootfood.api.Dto.LootPointDto;
+import com.lootfood.api.dto.LootPointDto;
 import com.lootfood.entity.LootPoint;
 import com.lootfood.service.LootPointService;
 import lombok.RequiredArgsConstructor;
@@ -16,14 +16,19 @@ import java.util.stream.Collectors;
 import static com.lootfood.api.transformer.LootPointTransformer.transform;
 
 @RestController
-@RequestMapping("/api/loot-point")
+@RequestMapping("/api/lootfood/loot/point")
 @RequiredArgsConstructor
 public class LootPointController {
     private final LootPointService lootPointService;
 
     @PostMapping
-    public LootPointDto add(@RequestBody LootPointDto dto) {
+    public LootPointDto create(@RequestBody LootPointDto dto) {
         return transform(lootPointService.add(transform(dto)));
+    }
+
+    @PutMapping("/{id}")
+    public LootPointDto update(@PathVariable("id") String id, @RequestBody LootPointDto dto) {
+        return transform(id, lootPointService.update(transform(id, dto)));
     }
 
     @GetMapping("/{id}")
@@ -33,31 +38,11 @@ public class LootPointController {
 
     @GetMapping(value = "/all", params = { "page", "size" })
     public Page<LootPointDto> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<LootPoint> lootPoints = lootPointService.getAll(pageable);
-
-        return new PageImpl<LootPointDto>(
-                lootPoints.stream().map(lootPoint -> transform(lootPoint)).collect(Collectors.toList()), pageable,
-                lootPoints.getTotalElements());
+        return lootPointService.getAll(PageRequest.of(page, size)).map(lootPoint -> transform(lootPoint));
     }
 
-    @GetMapping(value = "/all/in/polygon", params = { "page", "size" })
-    public Page<LootPointDto> getAllInPolygon(@RequestBody List<List<Double>> points, @RequestParam("page") int page, @RequestParam("size") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<LootPoint> lootPoints = lootPointService.getAllInPolygon(points ,pageable);
-
-        return new PageImpl<LootPointDto>(
-                lootPoints.stream().map(lootPoint -> transform(lootPoint)).collect(Collectors.toList()), pageable,
-                lootPoints.getTotalElements());
-    }
-
-    @PutMapping("/{id}")
-    public LootPointDto update(@PathVariable("id") String id, @RequestBody LootPointDto dto) {
-        return transform(id, lootPointService.update(transform(id, dto)));
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") String id) {
-        lootPointService.delete(id);
+    @GetMapping(value = "/all/in", params = { "page", "size" })
+    public Page<LootPointDto> getAll(@RequestBody List<List<Double>> points, @RequestParam("page") int page, @RequestParam("size") int size) {
+        return lootPointService.getAllInPolygon(points ,PageRequest.of(page, size)).map(lootPoint -> transform(lootPoint));
     }
 }

@@ -1,7 +1,5 @@
 package com.lootfood.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -22,7 +20,7 @@ public class LootPoint {
     private String id;
     private String name;
     private String description;
-    private TypeOfLootPoint type;
+    private LootPointType type;
     private List<Order> orders;
     private GeoJsonPoint location;
     @CreatedDate

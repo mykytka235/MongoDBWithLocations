@@ -21,10 +21,6 @@ public class CityService {
         return cityRepository.findById(id).get();
     }
 
-    public City getByName(String name) {
-        return cityRepository.findFirstByName(name);
-    }
-
     public City getByLocation(Point point) {
         return cityRepository.findCityByGeoIntersects(point);
     }
@@ -34,7 +30,11 @@ public class CityService {
     }
 
     public City update(City city) {
-        return cityRepository.save(city);
+        City cityFromDb = cityRepository.findById(city.getId()).get();
+        cityFromDb.setName(city.getName());
+        cityFromDb.setLocation(city.getLocation());
+
+        return cityRepository.save(cityFromDb);
     }
 
     public void delete(String id) {

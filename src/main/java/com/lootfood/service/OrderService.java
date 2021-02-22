@@ -25,7 +25,13 @@ public class OrderService {
     }
 
     public Order update(Order order) {
-        return orderRepository.update(order);
+        Order orderFromDb = orderRepository.findById(order.getId()).get();
+        orderFromDb.setName(order.getName());
+        orderFromDb.setDescription(order.getDescription());
+        orderFromDb.setUser(order.getUser());
+        orderFromDb.setService(order.getService());
+
+        return orderRepository.save(orderFromDb);
     }
 
     public void delete(String id) {

@@ -1,20 +1,23 @@
 package com.lootfood.repository.lootpoint;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.lootfood.entity.LootPoint;
-import com.mongodb.client.FindIterable;
+import com.lootfood.converter.JsonDateTimeConverter;
+import com.lootfood.converter.JsonIdConverter;
 import com.mongodb.client.model.Filters;
 import lombok.RequiredArgsConstructor;
 import org.bson.Document;
+import org.bson.json.JsonWriterSettings;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,28 +26,33 @@ public class LootPointRepositoryCustomImpl implements LootPointRepositoryCustom 
 
     @Override
     public Page<LootPoint> findAllLootPointsInPolygon(List<List<Double>> points, Pageable pageable) {
-        FindIterable<Document> result = mongoTemplate.getCollection("lootpoint")
-                .find(Filters.geoWithinPolygon("location", points));
-        List<LootPoint> lootPointsInCity = new ArrayList<>();
-        result.forEach(doc -> lootPointsInCity.add(mongoTemplate.findById(doc.get("_id").toString(), LootPoint.class)));
+        List<LootPoint> lootPointsInPolygon =  new ArrayList<>();
+        mongoTemplate.getCollection("lootpoint")
+                .find(Filters.geoWithinPolygon("location", points))
+                .skip((pageable.getPageNumber() > 0 ? pageable.getPageNumber() * pageable.getPageSize() : 0))
+                .limit(pageable.getPageSize())
+                .forEach(document -> lootPointsInPolygon.add(convertDoc(document)));
 
-        int start = (int) pageable.getOffset();
-        int end = (int) ((start + pageable.getPageSize()) > lootPointsInCity.size() ? lootPointsInCity.size() : (start + pageable.getPageSize()));
-        return new PageImpl<LootPoint>(lootPointsInCity.subList(start, end), pageable, lootPointsInCity.size());
+        return new PageImpl<>(lootPointsInPolygon, pageable, lootPointsInPolygon.size());
     }
 
-    @Override
-    public LootPoint update(LootPoint lootPoint) {
-        Query query = new Query(Criteria.where("id").is(lootPoint.getId()));
-        Update update = new Update();
-        update.set("name", lootPoint.getName());
-        update.set("description", lootPoint.getDescription());
-        update.set("type", lootPoint.getType());
-        update.set("orders", lootPoint.getOrders());
-        update.set("location", lootPoint.getLocation());
-        update.set("updateDate", new Date());
-        mongoTemplate.findAndModify(query, update, LootPoint.class);
+    private LootPoint convertDoc(Document document) {
+        Gson gson = new Gson();
+        String json = document.toJson(JsonWriterSettings.builder()
+                .objectIdConverter(new JsonIdConverter())
+                .dateTimeConverter(new JsonDateTimeConverter()).build())
+                .replace("_id", "id");
+        Type collectionType = new TypeToken<List<Double>>() {}.getType();
+        List<Double> coordsInDouble = gson.fromJson(
+                JsonParser.parseString(json)
+                        .getAsJsonObject()
+                        .getAsJsonObject("location")
+                        .getAsJsonArray("coordinates"),
+                collectionType
+        );
+        LootPoint lootPoint = gson.fromJson(json, LootPoint.class);
+        lootPoint.setLocation(new GeoJsonPoint(coordsInDouble.get(0), coordsInDouble.get(1)));
 
-        return mongoTemplate.findById(lootPoint.getId(), LootPoint.class);
+        return lootPoint;
     }
 }
