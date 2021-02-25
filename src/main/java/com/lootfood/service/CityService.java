@@ -30,10 +30,6 @@ public class CityService {
     }
 
     public City update(City city) {
-        City cityFromDb = cityRepository.findById(city.getId()).get();
-        cityFromDb.setName(city.getName());
-        cityFromDb.setLocation(city.getLocation());
-
-        return cityRepository.save(cityFromDb);
+        return cityRepository.update(city);
     }
 }

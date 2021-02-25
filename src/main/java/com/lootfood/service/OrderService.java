@@ -25,12 +25,6 @@ public class OrderService {
     }
 
     public Order update(Order order) {
-        Order orderFromDb = orderRepository.findById(order.getId()).get();
-        orderFromDb.setName(order.getName());
-        orderFromDb.setDescription(order.getDescription());
-        orderFromDb.setUser(order.getUser());
-        orderFromDb.setService(order.getService());
-
-        return orderRepository.save(orderFromDb);
+        return orderRepository.update(order);
     }
 }
