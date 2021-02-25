@@ -1,7 +1,7 @@
 package com.lootfood.api.transformer;
 
 import com.lootfood.api.dto.UserDto;
-import com.lootfood.entity.User;
+import com.lootfood.db.entity.User;
 
 public class UserTransformer {
     public static User transform(UserDto dto) {

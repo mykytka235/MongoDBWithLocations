@@ -1,7 +1,7 @@
 package com.lootfood.service;
 
-import com.lootfood.entity.Service;
-import com.lootfood.repository.service.ServiceRepository;
+import com.lootfood.db.entity.Service;
+import com.lootfood.db.repository.ServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,13 +24,6 @@ public class ServiceOfService {
     }
 
     public Service update(Service service) {
-        Service serviceFromDb = serviceRepository.findById(service.getId()).get();
-        serviceFromDb.setName(service.getName());
-
-        return serviceRepository.save(serviceFromDb);
-    }
-
-    public void delete(String id) {
-        serviceRepository.deleteById(id);
+        return serviceRepository.update(service);
     }
 }

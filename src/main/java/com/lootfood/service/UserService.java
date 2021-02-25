@@ -1,7 +1,7 @@
 package com.lootfood.service;
 
-import com.lootfood.entity.User;
-import com.lootfood.repository.user.UserRepository;
+import com.lootfood.db.entity.User;
+import com.lootfood.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,15 +25,6 @@ public class UserService {
     }
 
     public User update(User user) {
-        User userFromDb = userRepository.findById(user.getId()).get();
-        userFromDb.setFirstName(user.getFirstName());
-        userFromDb.setLastName(user.getLastName());
-        userFromDb.setPhone(user.getPhone());
-
-        return userRepository.save(userFromDb);
-    }
-
-    public void delete(String id) {
-        userRepository.deleteById(id);
+        return userRepository.update(user);
     }
 }

@@ -1,28 +1,27 @@
-package com.lootfood.entity;
+package com.lootfood.db.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "lootpoint")
-public class LootPoint {
+@Document(collection = "user")
+public class User {
     @Id
     private String id;
-    private String name;
-    private String description;
-    private LootPointType type;
-    private List<Order> orders;
-    private GeoJsonPoint location;
+    private String firstName;
+    private String lastName;
+    private String phone;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

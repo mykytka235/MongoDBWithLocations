@@ -5,7 +5,6 @@ import org.bson.json.StrictJsonWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -13,7 +12,7 @@ import java.util.Date;
 public class JsonDateTimeConverter implements Converter<Long> {
     static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
             .ISO_INSTANT
-            .withZone(ZoneId.of("UTC"));
+            .withZone(ZoneId.of("UCT"));
     Logger logger = LoggerFactory.getLogger(JsonDateTimeConverter.class);
 
     @Override

@@ -1,7 +1,7 @@
 package com.lootfood.service;
 
-import com.lootfood.entity.City;
-import com.lootfood.repository.city.CityRepository;
+import com.lootfood.db.entity.City;
+import com.lootfood.db.repository.CityRepository;
 import com.mongodb.client.model.geojson.Point;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -35,9 +35,5 @@ public class CityService {
         cityFromDb.setLocation(city.getLocation());
 
         return cityRepository.save(cityFromDb);
-    }
-
-    public void delete(String id) {
-        cityRepository.deleteById(id);
     }
 }

@@ -1,7 +1,7 @@
 package com.lootfood.api.transformer;
 
 import com.lootfood.api.dto.ServiceDto;
-import com.lootfood.entity.Service;
+import com.lootfood.db.entity.Service;
 
 public class ServiceTransformer {
     public static Service transform(ServiceDto dto) {

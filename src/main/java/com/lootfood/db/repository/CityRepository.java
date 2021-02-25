@@ -1,6 +1,7 @@
-package com.lootfood.repository.city;
+package com.lootfood.db.repository;
 
-import com.lootfood.entity.City;
+import com.lootfood.db.entity.City;
+import com.lootfood.db.repository.custom.CityRepositoryCustom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

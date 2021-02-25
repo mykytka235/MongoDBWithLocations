@@ -1,16 +1,11 @@
 package com.lootfood.api.controller;
 
 import com.lootfood.api.dto.OrderDto;
-import com.lootfood.entity.Order;
 import com.lootfood.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.stream.Collectors;
 
 import static com.lootfood.api.transformer.OrderTransformer.transform;
 

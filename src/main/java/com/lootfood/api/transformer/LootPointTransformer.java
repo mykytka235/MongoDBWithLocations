@@ -1,7 +1,7 @@
 package com.lootfood.api.transformer;
 
 import com.lootfood.api.dto.LootPointDto;
-import com.lootfood.entity.LootPoint;
+import com.lootfood.db.entity.LootPoint;
 
 public class LootPointTransformer {
     public static LootPoint transform(LootPointDto dto) {

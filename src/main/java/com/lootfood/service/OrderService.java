@@ -1,7 +1,7 @@
 package com.lootfood.service;
 
-import com.lootfood.entity.Order;
-import com.lootfood.repository.order.OrderRepository;
+import com.lootfood.db.entity.Order;
+import com.lootfood.db.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,9 +32,5 @@ public class OrderService {
         orderFromDb.setService(order.getService());
 
         return orderRepository.save(orderFromDb);
-    }
-
-    public void delete(String id) {
-        orderRepository.deleteById(id);
     }
 }

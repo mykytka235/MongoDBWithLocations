@@ -1,7 +1,7 @@
 package com.lootfood.api.dto;
 
-import com.lootfood.entity.Order;
-import com.lootfood.entity.LootPointType;
+import com.lootfood.db.entity.Order;
+import com.lootfood.db.entity.LootPointType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

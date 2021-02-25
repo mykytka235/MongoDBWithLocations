@@ -1,4 +1,4 @@
-package com.lootfood.entity;
+package com.lootfood.db.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +15,14 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "user")
-public class User {
+@Document(collection = "order")
+public class Order {
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
-    private String phone;
+    private String name;
+    private String description;
+    private User user;
+    private Service service;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

@@ -1,7 +1,7 @@
 package com.lootfood.service;
 
-import com.lootfood.entity.LootPoint;
-import com.lootfood.repository.lootpoint.LootPointRepository;
+import com.lootfood.db.entity.LootPoint;
+import com.lootfood.db.repository.LootPointRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,9 +39,5 @@ public class LootPointService {
         lootPointFromDb.setLocation(lootPoint.getLocation());
 
         return lootpointRepository.save(lootPointFromDb);
-    }
-
-    public void delete(String id) {
-        lootpointRepository.deleteById(id);
     }
 }

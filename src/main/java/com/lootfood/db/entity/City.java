@@ -1,4 +1,4 @@
-package com.lootfood.entity;
+package com.lootfood.db.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,9 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Data
 @Builder
@@ -23,7 +25,7 @@ public class City {
     private String id;
     private String name;
     private GeoJsonPolygon location;
-    @CreatedDate
+    @CreatedDate()
     private Date createdDate;
     @LastModifiedDate
     private Date updateDate;

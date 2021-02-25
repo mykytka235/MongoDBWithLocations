@@ -1,28 +1,30 @@
-package com.lootfood.entity;
+package com.lootfood.db.entity;
+
+import java.util.Date;
+import java.util.TimeZone;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import javax.annotation.PostConstruct;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "order")
-public class Order {
+@Document(collection = "service")
+public class Service {
     @Id
     private String id;
     private String name;
-    private String description;
-    private User user;
-    private Service service;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

@@ -1,19 +1,13 @@
 package com.lootfood.api.controller;
 
 import com.lootfood.api.dto.CityDto;
-import com.lootfood.entity.City;
 import com.lootfood.service.CityService;
 import com.mongodb.client.model.geojson.Position;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Point;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.lootfood.api.transformer.CityTransformer.transform;
 

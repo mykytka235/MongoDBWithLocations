@@ -1,17 +1,13 @@
 package com.lootfood.api.controller;
 
 import com.lootfood.api.dto.LootPointDto;
-import com.lootfood.entity.LootPoint;
 import com.lootfood.service.LootPointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.lootfood.api.transformer.LootPointTransformer.transform;
 

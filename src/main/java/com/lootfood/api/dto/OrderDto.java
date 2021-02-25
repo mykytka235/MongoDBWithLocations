@@ -1,7 +1,7 @@
 package com.lootfood.api.dto;
 
-import com.lootfood.entity.Service;
-import com.lootfood.entity.User;
+import com.lootfood.db.entity.Service;
+import com.lootfood.db.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
