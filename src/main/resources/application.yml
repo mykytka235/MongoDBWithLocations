@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: Lootfood
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: lootfood-db
+      uri: mongodb://localhost:27017/lootfood-db
+server:
+  port: 8081
