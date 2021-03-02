@@ -9,6 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.geo.Point;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
+
 import static com.lootfood.api.transformer.CityTransformer.transform;
 
 @RestController
@@ -23,7 +26,7 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public CityDto update(@PathVariable("id") String id, @RequestBody CityDto dto) {
+    public CityDto update(@PathVariable("id") String id, @RequestBody CityDto dto) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         return transform(id, cityService.update(transform(id, dto)));
     }
 
@@ -37,8 +40,9 @@ public class CityController {
         return transform(cityService.getByLocation(new com.mongodb.client.model.geojson.Point(new Position(point.getX(), point.getY()))));
     }
 
-    @GetMapping(value = "/all", params = {"page", "size"})
-    public Page<CityDto> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return cityService.getAll(PageRequest.of(page, size)).map(city -> transform(city));
+    @GetMapping(value = "/all")
+    public Page<CityDto> getAll(@RequestParam(defaultValue = "0") Integer page,
+                                @RequestParam(defaultValue = "10") Integer size) {
+        return cityService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

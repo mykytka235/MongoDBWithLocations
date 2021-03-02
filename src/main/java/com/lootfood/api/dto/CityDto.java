@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -18,6 +19,4 @@ public class CityDto {
     private String id;
     private String name;
     private GeoJsonPolygon location;
-    private Date createdDate;
-    private Date updateDate;
 }

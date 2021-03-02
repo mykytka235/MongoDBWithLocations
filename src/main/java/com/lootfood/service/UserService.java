@@ -7,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -24,7 +27,7 @@ public class UserService {
         return userRepository.findAll(pageable);
     }
 
-    public User update(User user) {
+    public User update(User user) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         return userRepository.update(user);
     }
 }

@@ -7,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
+
 import static com.lootfood.api.transformer.OrderTransformer.transform;
 
 @RestController
@@ -21,7 +24,7 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public OrderDto update(@PathVariable("id") String id, @RequestBody OrderDto dto) {
+    public OrderDto update(@PathVariable("id") String id, @RequestBody OrderDto dto) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         return transform(id, orderService.update(transform(id, dto)));
     }
 
@@ -30,8 +33,8 @@ public class OrderController {
         return transform(orderService.getById(id));
     }
 
-    @GetMapping(value = "/all", params = { "page", "size" })
-    public Page<OrderDto> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return orderService.getAll(PageRequest.of(page, size)).map(order -> transform(order));
+    @GetMapping(value = "/all")
+    public Page<OrderDto> getAll(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        return orderService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

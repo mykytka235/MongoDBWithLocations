@@ -5,9 +5,12 @@ import com.lootfood.db.repository.LootPointRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +33,11 @@ public class LootPointService {
         return lootpointRepository.findAllLootPointsInPolygon(points, pageable);
     }
 
-    public LootPoint update(LootPoint lootPoint) {
+    public Page<LootPoint> getAllWithinPoint(Point point, Pageable pageable) {
+        return lootpointRepository.findAllLootPointsWithinPoint(point, pageable);
+    }
+
+    public LootPoint update(LootPoint lootPoint) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         return lootpointRepository.update(lootPoint);
     }
 }

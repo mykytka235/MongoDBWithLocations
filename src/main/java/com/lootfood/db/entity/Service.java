@@ -1,20 +1,17 @@
 package com.lootfood.db.entity;
 
-import java.util.Date;
-import java.util.TimeZone;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.annotation.PostConstruct;
+import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -24,7 +21,10 @@ import javax.annotation.PostConstruct;
 public class Service {
     @Id
     private String id;
+    private String companyId;
     private String name;
+    private GeoJsonPoint location;
+    private List<Delivery> deliveries;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

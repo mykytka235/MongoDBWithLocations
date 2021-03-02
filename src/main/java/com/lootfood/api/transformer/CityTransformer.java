@@ -3,6 +3,8 @@ package com.lootfood.api.transformer;
 import com.lootfood.api.dto.CityDto;
 import com.lootfood.db.entity.City;
 
+import java.util.UUID;
+
 public class CityTransformer {
     public static City transform(CityDto dto) {
         return transform(dto.getId(), dto);
@@ -13,8 +15,6 @@ public class CityTransformer {
                 .id(id)
                 .name(dto.getName())
                 .location(dto.getLocation())
-                .createdDate(dto.getCreatedDate())
-                .updateDate(dto.getUpdateDate())
                 .build();
     }
 
@@ -27,8 +27,6 @@ public class CityTransformer {
                 .id(id)
                 .name(city.getName())
                 .location(city.getLocation())
-                .createdDate(city.getCreatedDate())
-                .updateDate(city.getUpdateDate())
                 .build();
     }
 }

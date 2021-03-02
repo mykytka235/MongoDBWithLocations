@@ -3,6 +3,8 @@ package com.lootfood.api.transformer;
 import com.lootfood.api.dto.ServiceDto;
 import com.lootfood.db.entity.Service;
 
+import java.util.UUID;
+
 public class ServiceTransformer {
     public static Service transform(ServiceDto dto) {
         return transform(dto.getId(), dto);
@@ -10,9 +12,11 @@ public class ServiceTransformer {
 
     public static Service transform(String id, ServiceDto dto) {
         return Service.builder().id(id)
+                .companyId(dto.getCompanyId())
                 .name(dto.getName())
-                .createdDate(dto.getCreatedDate())
-                .updateDate(dto.getUpdateDate()).build();
+                .location(dto.getLocation())
+                .deliveries(dto.getDeliveries())
+                .build();
     }
 
     public static ServiceDto transform(Service service) {
@@ -20,9 +24,11 @@ public class ServiceTransformer {
     }
 
     public static ServiceDto transform(String id, Service service) {
-        return ServiceDto.builder().id(service.getId())
+        return ServiceDto.builder().id(id)
+                .companyId(service.getCompanyId())
                 .name(service.getName())
-                .createdDate(service.getCreatedDate())
-                .updateDate(service.getUpdateDate()).build();
+                .location(service.getLocation())
+                .deliveries(service.getDeliveries())
+                .build();
     }
 }

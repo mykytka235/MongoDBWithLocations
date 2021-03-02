@@ -19,9 +19,9 @@ import java.util.Date;
 public class User {
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
-    private String phone;
+    private String name;
+    private String phoneNumber;
+    private String imageUrl;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

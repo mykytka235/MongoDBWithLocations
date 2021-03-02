@@ -1,8 +1,8 @@
 package com.lootfood.db.repository.custom.implementations;
 
 import com.lootfood.db.entity.City;
-import com.lootfood.db.entity.LootPoint;
 import com.lootfood.db.repository.custom.CityRepositoryCustom;
+import com.lootfood.db.repository.custom.PropertySetter;
 import com.lootfood.db.transformer.BsonTransformer;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.model.Filters;
@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import java.util.Date;
+import java.lang.reflect.InvocationTargetException;
 
 @RequiredArgsConstructor
 public class CityRepositoryCustomImpl implements CityRepositoryCustom {
@@ -27,12 +27,10 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
         return BsonTransformer.transformInCity(result.first());
     }
     @Override
-    public City update(City city){
+    public City update(City city) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Query query = new Query(Criteria.where("id").is(city.getId()));
-        Update update = new Update()
-                .set("name", city.getName())
-                .set("location", city.getLocation())
-                .set("updateDate", new Date());
+        Update update = new Update();
+        PropertySetter.setFieldsToUpdate(city, update);
 
         mongoTemplate.findAndModify(query, update, City.class);
         return mongoTemplate.findOne(query, City.class);
