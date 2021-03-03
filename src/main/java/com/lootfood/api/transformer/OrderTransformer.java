@@ -3,8 +3,6 @@ package com.lootfood.api.transformer;
 import com.lootfood.api.dto.OrderDto;
 import com.lootfood.db.entity.Order;
 
-import java.util.UUID;
-
 public class OrderTransformer {
     public static Order transform(OrderDto dto) {
         return transform(dto.getId(), dto);

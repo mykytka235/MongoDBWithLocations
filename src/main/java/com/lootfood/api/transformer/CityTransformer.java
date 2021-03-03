@@ -3,8 +3,6 @@ package com.lootfood.api.transformer;
 import com.lootfood.api.dto.CityDto;
 import com.lootfood.db.entity.City;
 
-import java.util.UUID;
-
 public class CityTransformer {
     public static City transform(CityDto dto) {
         return transform(dto.getId(), dto);

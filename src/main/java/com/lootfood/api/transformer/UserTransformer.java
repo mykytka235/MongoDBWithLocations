@@ -3,12 +3,6 @@ package com.lootfood.api.transformer;
 import com.lootfood.api.dto.UserDto;
 import com.lootfood.db.entity.User;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.UUID;
-
 public class UserTransformer {
     public static User transform(UserDto dto) {
         return transform(dto.getId(), dto);

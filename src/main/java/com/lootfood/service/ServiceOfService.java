@@ -6,9 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.UUID;
-
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor
 public class ServiceOfService {
@@ -26,7 +23,7 @@ public class ServiceOfService {
         return serviceRepository.findAll(pageable);
     }
 
-    public Service update(Service service) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public Service update(Service service) {
         return serviceRepository.update(service);
     }
 }

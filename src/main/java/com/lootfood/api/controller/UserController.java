@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.UUID;
 
 import static com.lootfood.api.transformer.UserTransformer.transform;
 
@@ -24,7 +23,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserDto update(@PathVariable("id") String id, @RequestBody UserDto dto) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public UserDto update(@PathVariable("id") String id, @RequestBody UserDto dto) {
         return transform(id, userService.update(transform(id, dto)));
     }
 
@@ -33,8 +32,8 @@ public class UserController {
         return transform(userService.getById(id));
     }
 
-    @GetMapping(value = "/all", params = { "page", "size" })
-    public Page<UserDto> getAll(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    @GetMapping(value = "/all")
+    public Page<UserDto> getAll(Integer page, Integer size) {
         return userService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

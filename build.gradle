@@ -18,6 +18,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'commons-beanutils:commons-beanutils:1.9.4'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

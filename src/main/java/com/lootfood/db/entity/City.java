@@ -7,16 +7,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.annotation.PostConstruct;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.Date;
-import java.util.TimeZone;
-import java.util.UUID;
 
 @Data
 @Builder

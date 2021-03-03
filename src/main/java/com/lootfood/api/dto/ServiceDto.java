@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
-import java.sql.Timestamp;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder

@@ -8,15 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder

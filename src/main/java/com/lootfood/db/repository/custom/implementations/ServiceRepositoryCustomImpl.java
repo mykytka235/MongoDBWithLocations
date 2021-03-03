@@ -9,14 +9,12 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import java.lang.reflect.InvocationTargetException;
-
 @RequiredArgsConstructor
 public class ServiceRepositoryCustomImpl implements ServiceRepositoryCustom {
     private final MongoTemplate mongoTemplate;
 
     @Override
-    public Service update(Service service) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public Service update(Service service) {
         Query query = new Query(Criteria.where("id").is(service.getId()));
         Update update = new Update();
         PropertySetter.setFieldsToUpdate(service, update);

@@ -1,6 +1,5 @@
 package com.lootfood.api.controller;
 
-import com.lootfood.api.dto.CourierDto;
 import com.lootfood.api.dto.DeliveryDto;
 import com.lootfood.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +31,7 @@ public class DeliveryController {
     }
 
     @GetMapping(value = "/all")
-    public Page<DeliveryDto> getAll(@RequestParam(defaultValue = "0") Integer page,
-                                   @RequestParam(defaultValue = "10") Integer size) {
+    public Page<DeliveryDto> getAll(Integer page, Integer size) {
         return deliveryService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

@@ -31,8 +31,7 @@ public class ItemController {
     }
 
     @GetMapping(value = "/all")
-    public Page<ItemDto> getAll(@RequestParam(defaultValue = "0") Integer page,
-                                   @RequestParam(defaultValue = "10") Integer size) {
+    public Page<ItemDto> getAll(Integer page, Integer size) {
         return itemService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

@@ -8,9 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +35,7 @@ public class LootPointService {
         return lootpointRepository.findAllLootPointsWithinPoint(point, pageable);
     }
 
-    public LootPoint update(LootPoint lootPoint) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public LootPoint update(LootPoint lootPoint) {
         return lootpointRepository.update(lootPoint);
     }
 }

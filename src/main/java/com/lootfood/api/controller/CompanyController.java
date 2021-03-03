@@ -31,8 +31,7 @@ public class CompanyController {
     }
 
     @GetMapping(value = "/all")
-    public Page<CompanyDto> getAll(@RequestParam(defaultValue = "0") Integer page,
-                                   @RequestParam(defaultValue = "10") Integer size) {
+    public Page<CompanyDto> getAll(Integer page, Integer size) {
         return companyService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

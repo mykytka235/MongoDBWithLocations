@@ -3,7 +3,6 @@ package com.lootfood.api.controller;
 import com.lootfood.api.dto.LootPointDto;
 import com.lootfood.service.LootPointService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.geo.Point;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.UUID;
 
 import static com.lootfood.api.transformer.LootPointTransformer.transform;
 
@@ -27,7 +25,7 @@ public class LootPointController {
     }
 
     @PutMapping("/{id}")
-    public LootPointDto update(@PathVariable("id") String id, @RequestBody LootPointDto dto) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public LootPointDto update(@PathVariable("id") String id, @RequestBody LootPointDto dto) {
         return transform(id, lootPointService.update(transform(id, dto)));
     }
 
@@ -37,8 +35,7 @@ public class LootPointController {
     }
 
     @GetMapping(value = "/all")
-    public Page<LootPointDto> getAll(@RequestParam(defaultValue = "0") Integer page,
-                                     @RequestParam(defaultValue = "10") Integer size) {
+    public Page<LootPointDto> getAll(Integer page, Integer size) {
         return lootPointService.getAll(PageRequest.of(page, size)).map(lootPoint -> transform(lootPoint));
     }
 

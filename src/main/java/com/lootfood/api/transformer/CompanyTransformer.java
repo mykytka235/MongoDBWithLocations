@@ -1,6 +1,5 @@
 package com.lootfood.api.transformer;
 
-
 import com.lootfood.api.dto.CompanyDto;
 import com.lootfood.db.entity.Company;
 

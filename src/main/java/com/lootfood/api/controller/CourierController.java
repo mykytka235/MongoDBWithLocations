@@ -31,8 +31,7 @@ public class CourierController {
     }
 
     @GetMapping(value = "/all")
-    public Page<CourierDto> getAll(@RequestParam(defaultValue = "0") Integer page,
-                                   @RequestParam(defaultValue = "10") Integer size) {
+    public Page<CourierDto> getAll(Integer page, Integer size) {
         return courierService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

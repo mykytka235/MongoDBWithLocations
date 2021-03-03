@@ -9,8 +9,6 @@ import com.lootfood.db.repository.custom.PropertySetter;
 import com.lootfood.db.transformer.BsonTransformer;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.geojson.Geometry;
-import com.mongodb.client.model.geojson.Polygon;
 import com.mongodb.client.model.geojson.Position;
 import lombok.RequiredArgsConstructor;
 import org.bson.Document;
@@ -19,12 +17,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +67,7 @@ public class LootPointRepositoryCustomImpl implements LootPointRepositoryCustom 
         return new PageImpl<>(lootPointsInPolygon, pageable, lootPointsInPolygon.size());
     }
     @Override
-    public LootPoint update(LootPoint lootPoint) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public LootPoint update(LootPoint lootPoint) {
         Query query = new Query(Criteria.where("id").is(lootPoint.getId()));
         Update update = new Update();
         PropertySetter.setFieldsToUpdate(lootPoint, update);

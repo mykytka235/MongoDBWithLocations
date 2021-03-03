@@ -3,8 +3,6 @@ package com.lootfood.api.transformer;
 import com.lootfood.api.dto.LootPointDto;
 import com.lootfood.db.entity.LootPoint;
 
-import java.util.UUID;
-
 public class LootPointTransformer {
     public static LootPoint transform(LootPointDto dto) {
         return transform(dto.getId(), dto);

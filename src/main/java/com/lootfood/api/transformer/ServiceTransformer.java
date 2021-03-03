@@ -3,8 +3,6 @@ package com.lootfood.api.transformer;
 import com.lootfood.api.dto.ServiceDto;
 import com.lootfood.db.entity.Service;
 
-import java.util.UUID;
-
 public class ServiceTransformer {
     public static Service transform(ServiceDto dto) {
         return transform(dto.getId(), dto);

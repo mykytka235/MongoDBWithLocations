@@ -1,0 +1,22 @@
+version: '3'
+services:
+  local-mongodb:
+    image: mongo
+    container_name: lootfood-mongo
+    ports:
+      - 27017:27017
+    networks:
+      - local-network
+  api:
+    build: .
+    image: lootfood-api
+    ports:
+      - 8081:8081
+    depends_on:
+      - local-mongodb
+    environment:
+      - SPRING_DATASOURCE_URL=mongodb://local-mongodb:27017/lootfood-db
+    networks:
+      - local-network
+networks:
+  local-network:

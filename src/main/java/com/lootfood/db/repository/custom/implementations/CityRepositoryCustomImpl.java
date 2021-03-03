@@ -14,8 +14,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import java.lang.reflect.InvocationTargetException;
-
 @RequiredArgsConstructor
 public class CityRepositoryCustomImpl implements CityRepositoryCustom {
     private final MongoTemplate mongoTemplate;
@@ -27,7 +25,7 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
         return BsonTransformer.transformInCity(result.first());
     }
     @Override
-    public City update(City city) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public City update(City city) {
         Query query = new Query(Criteria.where("id").is(city.getId()));
         Update update = new Update();
         PropertySetter.setFieldsToUpdate(city, update);
