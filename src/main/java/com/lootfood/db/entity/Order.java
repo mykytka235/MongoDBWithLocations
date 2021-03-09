@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,10 +20,8 @@ import java.util.Date;
 public class Order {
     @Id
     private String id;
-    private String name;
-    private String description;
-    private User user;
-    private Service service;
+    private List<OrderLine> orderLines;
+    private Number total;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

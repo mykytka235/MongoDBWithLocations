@@ -13,9 +13,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDto {
     private String id;
-    private String firstName;
-    private String lastName;
-    private String phone;
+    private String name;
+    private String phoneNumber;
+    private String imageUrl;
     private Date createdDate;
     private Date updateDate;
+    private Date testDate;
 }

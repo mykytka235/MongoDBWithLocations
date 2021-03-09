@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static com.lootfood.api.transformer.UserTransformer.transform;
 
 @RestController
@@ -30,8 +32,8 @@ public class UserController {
         return transform(userService.getById(id));
     }
 
-    @GetMapping(value = "/all", params = { "page", "size" })
-    public Page<UserDto> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return userService.getAll(PageRequest.of(page, size)).map(user -> transform(user));
+    @GetMapping(value = "/all")
+    public Page<UserDto> getAll(Integer page, Integer size) {
+        return userService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

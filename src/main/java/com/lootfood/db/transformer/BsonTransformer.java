@@ -26,7 +26,7 @@ public class BsonTransformer {
                 .dateTimeConverter(new JsonDateTimeConverter()).build())
                 .replace("_id", "id");
         Type collectionType = new TypeToken<List<Double>>() {}.getType();
-        List<Double> coordsInDouble = gson.fromJson(
+        List<Double> cordsInDouble = gson.fromJson(
                 JsonParser.parseString(json)
                         .getAsJsonObject()
                         .getAsJsonObject("location")
@@ -34,7 +34,7 @@ public class BsonTransformer {
                 collectionType
         );
         LootPoint lootPoint = gson.fromJson(json, LootPoint.class);
-        lootPoint.setLocation(new GeoJsonPoint(coordsInDouble.get(0), coordsInDouble.get(1)));
+        lootPoint.setLocation(new GeoJsonPoint(cordsInDouble.get(0), cordsInDouble.get(1)));
 
         return lootPoint;
     }
@@ -44,7 +44,7 @@ public class BsonTransformer {
         String json = document.toJson(JsonWriterSettings.builder()
                 .objectIdConverter(new JsonIdConverter())
                 .dateTimeConverter(new JsonDateTimeConverter())
-                .build());
+                .build()).replace("_id", "id");
         Type collectionType = new TypeToken<ArrayList<ArrayList<Double>>>() {}.getType();
         List<List<Double>> pointsList = gson.fromJson(
                 JsonParser.parseString(json)

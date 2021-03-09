@@ -10,11 +10,12 @@ public class UserTransformer {
 
     public static User transform(String id, UserDto dto) {
         return User.builder().id(id)
-                .firstName(dto.getFirstName())
-                .lastName(dto.getLastName())
-                .phone(dto.getPhone())
+                .name(dto.getName())
+                .phoneNumber(dto.getPhoneNumber())
+                .imageUrl(dto.getImageUrl())
                 .createdDate(dto.getCreatedDate())
-                .updateDate(dto.getUpdateDate()).build();
+                .updateDate(dto.getUpdateDate())
+                .build();
     }
 
     public static UserDto transform(User user) {
@@ -23,10 +24,11 @@ public class UserTransformer {
 
     public static UserDto transform(String id, User user) {
         return UserDto.builder().id(id)
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .phone(user.getPhone())
+                .name(user.getName())
+                .phoneNumber(user.getPhoneNumber())
+                .imageUrl(user.getImageUrl())
                 .createdDate(user.getCreatedDate())
-                .updateDate(user.getUpdateDate()).build();
+                .updateDate(user.getUpdateDate())
+                .build();
     }
 }

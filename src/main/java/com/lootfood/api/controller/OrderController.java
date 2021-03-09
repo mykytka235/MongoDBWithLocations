@@ -30,8 +30,8 @@ public class OrderController {
         return transform(orderService.getById(id));
     }
 
-    @GetMapping(value = "/all", params = { "page", "size" })
-    public Page<OrderDto> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return orderService.getAll(PageRequest.of(page, size)).map(order -> transform(order));
+    @GetMapping(value = "/all")
+    public Page<OrderDto> getAll(Integer page, Integer size) {
+        return orderService.getAll(PageRequest.of(page, size)).map(e -> transform(e));
     }
 }

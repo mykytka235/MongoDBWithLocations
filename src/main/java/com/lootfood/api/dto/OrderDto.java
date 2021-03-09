@@ -1,13 +1,12 @@
 package com.lootfood.api.dto;
 
-import com.lootfood.db.entity.Service;
-import com.lootfood.db.entity.User;
+import com.lootfood.db.entity.OrderLine;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -15,10 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class OrderDto {
     private String id;
-    private String name;
-    private String description;
-    private User user;
-    private Service service;
-    private Date createdDate;
-    private Date updateDate;
+    private List<OrderLine> orderLines;
+    private Number total;
 }

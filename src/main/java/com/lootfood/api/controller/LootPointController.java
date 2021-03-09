@@ -5,8 +5,10 @@ import com.lootfood.service.LootPointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.geo.Point;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static com.lootfood.api.transformer.LootPointTransformer.transform;
@@ -32,13 +34,23 @@ public class LootPointController {
         return transform(lootPointService.getById(id));
     }
 
-    @GetMapping(value = "/all", params = { "page", "size" })
-    public Page<LootPointDto> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
+    @GetMapping(value = "/all")
+    public Page<LootPointDto> getAll(Integer page, Integer size) {
         return lootPointService.getAll(PageRequest.of(page, size)).map(lootPoint -> transform(lootPoint));
     }
 
-    @GetMapping(value = "/all/in", params = { "page", "size" })
-    public Page<LootPointDto> getAll(@RequestBody List<List<Double>> points, @RequestParam("page") int page, @RequestParam("size") int size) {
+    @GetMapping(value = "/all/in")
+    public Page<LootPointDto> getAll(@RequestBody List<List<Double>> points,
+                                     @RequestParam(defaultValue = "0") Integer page,
+                                     @RequestParam(defaultValue = "10") Integer size)
+    {
         return lootPointService.getAllInPolygon(points ,PageRequest.of(page, size)).map(lootPoint -> transform(lootPoint));
+    }
+
+    @GetMapping(value = "/all/with")
+    public Page<LootPointDto> getAll(@RequestBody Point point,
+                                     @RequestParam(defaultValue = "0") Integer page,
+                                     @RequestParam(defaultValue = "10") Integer size) {
+        return lootPointService.getAllWithinPoint(point, PageRequest.of(page, size)).map(lootPoint -> transform(lootPoint));
     }
 }

@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CityDto {
+public class CourierDto {
     private String id;
-    private String name;
-    private GeoJsonPolygon location;
+    private String phone;
+    private String firstName;
+    private String lastName;
+    private GeoJsonPoint location;
 }

@@ -1,7 +1,9 @@
 package com.lootfood.api.dto;
 
+import com.lootfood.db.entity.Address;
 import com.lootfood.db.entity.Order;
-import com.lootfood.db.entity.LootPointType;
+import com.lootfood.db.entity.Status;
+import com.lootfood.db.entity.Visibility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +19,14 @@ import java.util.List;
 @AllArgsConstructor
 public class LootPointDto {
     private String id;
-    private String name;
-    private String description;
-    private LootPointType type;
-    private List<Order> orders;
+    private Visibility visibility;
     private GeoJsonPoint location;
+    private Address address;
+    private Number total;
+    private List<Order> orders;
+    private String serviceId;
+    private String deliveryId;
+    private Status status;
     private Date createdDate;
-    private Date updateDate;
+    private Date expirationDate;
 }

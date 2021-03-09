@@ -13,8 +13,6 @@ public class CityTransformer {
                 .id(id)
                 .name(dto.getName())
                 .location(dto.getLocation())
-                .createdDate(dto.getCreatedDate())
-                .updateDate(dto.getUpdateDate())
                 .build();
     }
 
@@ -27,8 +25,6 @@ public class CityTransformer {
                 .id(id)
                 .name(city.getName())
                 .location(city.getLocation())
-                .createdDate(city.getCreatedDate())
-                .updateDate(city.getUpdateDate())
                 .build();
     }
 }

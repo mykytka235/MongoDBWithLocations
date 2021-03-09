@@ -5,6 +5,7 @@ import com.lootfood.db.repository.LootPointRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +29,10 @@ public class LootPointService {
 
     public Page<LootPoint> getAllInPolygon(List<List<Double>> points, Pageable pageable) {
         return lootpointRepository.findAllLootPointsInPolygon(points, pageable);
+    }
+
+    public Page<LootPoint> getAllWithinPoint(Point point, Pageable pageable) {
+        return lootpointRepository.findAllLootPointsWithinPoint(point, pageable);
     }
 
     public LootPoint update(LootPoint lootPoint) {

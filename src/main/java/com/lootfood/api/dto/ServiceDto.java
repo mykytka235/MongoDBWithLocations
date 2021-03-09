@@ -1,11 +1,13 @@
 package com.lootfood.api.dto;
 
+import com.lootfood.db.entity.Delivery;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -13,7 +15,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class ServiceDto {
     private String id;
+    private String companyId;
     private String name;
-    private Date createdDate;
-    private Date updateDate;
+    private GeoJsonPoint location;
+    private List<Delivery> deliveries;
 }

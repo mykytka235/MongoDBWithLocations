@@ -12,8 +12,8 @@ import java.util.Date;
 public class JsonDateTimeConverter implements Converter<Long> {
     static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
             .ISO_INSTANT
-            .withZone(ZoneId.of("UCT"));
-    Logger logger = LoggerFactory.getLogger(JsonDateTimeConverter.class);
+            .withZone(ZoneId.of("UTC"));
+    private Logger logger = LoggerFactory.getLogger(JsonDateTimeConverter.class);
 
     @Override
     public void convert(Long value, StrictJsonWriter writer) {

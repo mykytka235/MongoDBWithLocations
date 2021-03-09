@@ -1,5 +1,5 @@
 package com.lootfood.db.entity;
 
-public enum LootPointType {
+public enum Visibility {
     PUBLIC, PRIVATE
 }
